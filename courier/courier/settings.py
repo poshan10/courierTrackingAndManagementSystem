@@ -31,8 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    #'home'
-    #'staffpanel'
+    'home',
+    'staffpanel',
+    'login',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -124,3 +125,6 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'statics')
    ]
 # STATIC_ROOT = os.path.join(BASE_DIR,'templates/assets')
+LOGIN_REDIRECT_URL = '/success'
+
+

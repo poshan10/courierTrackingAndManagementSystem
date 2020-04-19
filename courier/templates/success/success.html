@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PKS</title>
+</head>
+<body>
+{% block content %}
+
+HI I AM SUCCESS {{user.username}}
+<form method="POST" action="/logout/">
+    {% csrf_token %}
+<input type="submit" value="Logout">
+</form>
+{% endblock %}
+</body>
+</html>
