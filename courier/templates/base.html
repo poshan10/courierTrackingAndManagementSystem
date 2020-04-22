@@ -65,11 +65,14 @@
                                        </ul>
 
                                     </li>
+<!--                                    % if request.user|has_group:"staff" and if request.user|has_group:"admin" %-->
+<!--                               % if request.user.is_staff %-->
                                     <li><a href="about.html">about</a></li>
                                     <li><a href="service.html">services</a></li>
                                     <li><a href="pricing.html">pricing</a></li>
                                     <li><a href="contact.html">contact</a></li>
-                                </ul>
+<!--                                  % endif %-->
+                          </ul>
                             <!-- /.navbar-collapse -->
                         </nav>
                     </div>
