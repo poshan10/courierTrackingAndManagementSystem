@@ -1,4 +1,5 @@
 <!doctype html>
+{% if request.user.is_authenticated == False %}
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -54,5 +55,15 @@
       <p class="mt-5 mb-3 text-muted">&copy; 2020</p>
 
     </form>
+  {% endif %}
+{% if request.user.is_authenticated == True %}
+<div> <h2>You are already log in as <a href="/success">{{user.username}},</a> </div>
+ <li> <form method="POST" action="/logout/">
+                             {% csrf_token %}
+                            <input type="submit" value="Logout">
+                         </form>  </li>
+    {% endif %}
   </body>
+
 </html>
+

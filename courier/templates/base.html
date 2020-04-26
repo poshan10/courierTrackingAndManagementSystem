@@ -67,23 +67,47 @@
                                     </li>
 <!--                                    % if request.user|has_group:"staff" and if request.user|has_group:"admin" %-->
 <!--                               % if request.user.is_staff %-->
+<!--                                    % if request.user.groups.exists == 'Admin' %-->
+
                                     <li><a href="about.html">about</a></li>
                                     <li><a href="service.html">services</a></li>
                                     <li><a href="pricing.html">pricing</a></li>
                                     <li><a href="contact.html">contact</a></li>
+<!--                                    % endif %-->
 <!--                                  % endif %-->
                           </ul>
                             <!-- /.navbar-collapse -->
                         </nav>
                     </div>
                     <div class="col-md-3 col-sm-3 col-xs-4 col-lg-3 signup">
-                        <ul class="nav navbar-nav">
-                            <li><a href="#">{{user.username}},</a></li>
-                         <li> <form method="POST" action="/logout/">
-                             {% csrf_token %}
-                            <input type="submit" value="Logout">
-                         </form>  </li>
-<!--                            <li><a href="/register">sign up</a></li>-->
+                    <ul class="nav navbar-nav">
+<!--                            adding logout button under username-->
+                        <div class="btn-group">
+  <button data-toggle="dropdown">
+    <li><a href="#">{{user.username}}</a> </li>
+  </button>
+  <div class="dropdown-menu">
+      <form method="POST" action="/logout/">
+    {% csrf_token %}
+<li><input type="submit" value="Logout"> </li>
+</form>
+      </div>
+</div>
+
+<!--                        end try-->
+
+<!--                        <li><a href="#">{{user.username}},</a></li>-->
+
+
+
+<!--                         <li> <form method="POST" action="/logout/">-->
+<!--                             {% csrf_token %}-->
+<!--                            <input type="submit" value="Logout">-->
+<!--                         </form>  </li>-->
+
+                            {% if request.user.is_staff %}
+                            <button type="button" class="btn btn-warning"><a href="/register">Add staff</a></button>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
@@ -185,6 +209,7 @@
     <script src="{% static 'js/jquery.counterup.min.js' %}"></script>
     <!--    main.js-->
     <script src="{% static 'js/main.js' %}"></script>
+</body>
 </html>
 
 
