@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'home',
     'staffpanel',
     'login',
+    'crispy_forms',   # crispy pkg for register form ;; install pkg : pip install django-crispy-forms
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -126,5 +127,6 @@ STATICFILES_DIRS = [
    ]
 # STATIC_ROOT = os.path.join(BASE_DIR,'templates/assets')
 LOGIN_REDIRECT_URL = '/success'
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 

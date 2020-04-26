@@ -9,10 +9,23 @@
 {% block content %}
 
 HI I AM SUCCESS {{user.username}}
-<form method="POST" action="/logout/">
+
+<!--<form method="POST" action="/logout/">-->
+<!--    {% csrf_token %}-->
+<!--<input type="submit" value="Logout">-->
+<!--</form>-->
+<div class="btn-group">
+  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{user.username}}
+  </button>
+  <div class="dropdown-menu">
+      <form method="POST" action="/logout/">
     {% csrf_token %}
 <input type="submit" value="Logout">
 </form>
+      </div>
+</div>
 {% endblock %}
+
 </body>
 </html>
