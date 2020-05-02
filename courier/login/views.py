@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from .decorators import unauthenticated_users,allowed_users,admin_only
-from .forms import RegisterForm
+from .forms import RegisterForm, UserProfileForm
 
 # Create your views here.
 from django.urls import reverse
@@ -19,18 +19,23 @@ def login(request):
 @allowed_users(allowed_roles=['Admin', 'Manager'])
 def register(request):
     form = RegisterForm()
+    profile_form = UserProfileForm()
     if request.method == 'POST':
         form = RegisterForm(request.POST)
-        if form.is_valid():
+        profile_form = UserProfileForm(request.POST)
+        if form.is_valid() and profile_form.is_valid():
             user = form.save()
+            profile = profile_form.save(commit=False)
+            profile.user = user
+            profile.save()
             group = Group.objects.get(name='Staff')
             user.groups.add(group)
             return redirect('success')
         else:
-            return render(request, 'registration/register.html', {'form': form})
+            return render(request, 'registration/register.html', {'form': form, 'profile_form': profile_form})
 
     else:
-        return render(request, 'registration/register.html', {'form': form})
+        return render(request, 'registration/register.html', {'form': form, 'profile_form': profile_form})
 
 
 
@@ -62,6 +67,23 @@ def user_logout(request):
     #         form = RegisterForm(request.POST)
     #         if form.is_valid():
     #             form.save()
+    #             return redirect('success')
+    #         else:
+    #             return render(request, 'registration/register.html', {'form': form})
+    #
+    #     else:
+    #         return render(request, 'registration/register.html', {'form': form})
+
+    #after crispy form
+    # def register(request):
+    #     form = RegisterForm()
+    #     if request.method == 'POST':
+    #         form = RegisterForm(request.POST)
+    #
+    #         if form.is_valid():
+    #             user = form.save()
+    #             group = Group.objects.get(name='Staff')
+    #             user.groups.add(group)
     #             return redirect('success')
     #         else:
     #             return render(request, 'registration/register.html', {'form': form})
