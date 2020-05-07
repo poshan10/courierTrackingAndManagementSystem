@@ -32,9 +32,21 @@
   <br>
   <br>
   <br>
+  <br><br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
   <div class="p-3 mb-2 bg-info text-white text-center "><h2>Register New Account</h2></div>
   {% csrf_token %}
   {{ form|crispy }}
+  {{ profile_form|crispy }}
 
   <input class= "btn btn-outline-info"type="submit">
   </div>
