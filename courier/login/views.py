@@ -51,6 +51,10 @@ def user_logout(request):
         logout(request)
         return HttpResponseRedirect(reverse('index'),)
 
+
+def branches(request):
+        return render(request, 'branches.html')
+
     # from django import template
     # from django.contrib.auth.models import Group
     #
